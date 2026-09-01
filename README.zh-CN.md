@@ -32,6 +32,12 @@ _向 Claude Code、Cursor、Codex、DSH 或任意 MCP 客户端暴露 DeepSeek �
 - [chew-z/DeepseekMCP](https://github.com/chew-z/DeepseekMCP) —— 用 Golang 编写的简易 MCP 服务器，将提问转发给 DeepSeek 模型。  `⭐4`
 - [Sheshiyer/deepseek-mcp-with-MoE](https://github.com/Sheshiyer/deepseek-mcp-with-MoE) —— 带 Mixture-of-Experts 路由的 DeepSeek MCP 服务器。  `⭐5`
 
+- [moyu6027/deepseek-MCP-server](https://github.com/moyu6027/deepseek-MCP-server) —— 通过集成 DeepSeek R1 的先进推理引擎，增强 Claude 的推理能力。  `⭐1`
+- [xihe-lab/deepseek-mcp-server](https://github.com/xihe-lab/deepseek-mcp-server) —— 通过 Playwright 浏览器自动化操作 DeepSeek 网页聊天。  `⭐1`
+- [deepzhun/deepseek-mcp-server](https://github.com/deepzhun/deepseek-mcp-server) —— 简洁的 DeepSeek API MCP 服务器：V3 生成、聊天与带可见思维链的 R1 推理。  `⭐1`
+- [booleamu/deepseek-mcp-server](https://github.com/booleamu/deepseek-mcp-server) —— DeepSeek API MCP 服务器：聊天、Reasoner、FIM、文件分析；支持官方 API 与免费网页客户端模式。  `⭐1`
+- [shengku2121/deepseek-mcp-server](https://github.com/shengku2121/deepseek-mcp-server) —— 将 DeepSeek API 作为 MCP 服务器——为 Claude Code、Cursor、Windsurf 及任意 MCP 客户端提供更廉价的 AI 推理。  `⭐0`
+
 ## DeepSeek 驱动的集成
 
 _把任务路由给 DeepSeek 的 MCP 桥接与委派工具。_

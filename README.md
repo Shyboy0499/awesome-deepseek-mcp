@@ -32,6 +32,12 @@ _MCP servers that expose DeepSeek's language models to Claude Code, Cursor, Code
 - [chew-z/DeepseekMCP](https://github.com/chew-z/DeepseekMCP) — Simple MCP server in Golang to redirect questions to DeepSeek models.  `⭐4`
 - [Sheshiyer/deepseek-mcp-with-MoE](https://github.com/Sheshiyer/deepseek-mcp-with-MoE) — DeepSeek MCP server with Mixture-of-Experts routing.  `⭐5`
 
+- [moyu6027/deepseek-MCP-server](https://github.com/moyu6027/deepseek-MCP-server) — Enhances Claude's reasoning by integrating DeepSeek R1's advanced reasoning engine.  `⭐1`
+- [xihe-lab/deepseek-mcp-server](https://github.com/xihe-lab/deepseek-mcp-server) — Automates DeepSeek web chat via Playwright browser automation.  `⭐1`
+- [deepzhun/deepseek-mcp-server](https://github.com/deepzhun/deepseek-mcp-server) — Small, clean MCP server for the DeepSeek API: V3 generation, chat, and R1 reasoning with visible chain-of-thought.  `⭐1`
+- [booleamu/deepseek-mcp-server](https://github.com/booleamu/deepseek-mcp-server) — DeepSeek API MCP server: Chat, Reasoner, FIM, file analysis; supports official API and free web client mode.  `⭐1`
+- [shengku2121/deepseek-mcp-server](https://github.com/shengku2121/deepseek-mcp-server) — DeepSeek API as MCP server — cheaper AI inference for Claude Code, Cursor, Windsurf, and any MCP client.  `⭐0`
+
 ## DeepSeek-powered integrations
 
 _MCP bridges and delegators that route work to DeepSeek from other agents._
