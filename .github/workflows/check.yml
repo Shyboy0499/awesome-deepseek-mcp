@@ -1,0 +1,121 @@
+name: Check entries
+
+# Auto-maintenance for the list. Every PR is checked for the two kinds of rot
+# that silently accumulate in curated lists: dead links (repos that no longer
+# resolve) and renamed repos (old URLs that still redirect, so nothing else
+# catches them). Posts an advisory comment; never fails the run.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Shyboy0499/awesome-deepseek-mcp'
+    outputs:
+      report: ${{ steps.detect.outputs.report }}
+      count: ${{ steps.detect.outputs.count }}
+    steps:
+      - name: Checkout base
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch PR head
+        env:
+          PR_NUM: ${{ github.event.pull_request.number }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "pull/${PR_NUM}/head:pr-head"
+          base_sha="$(git merge-base "origin/${BASE_REF}" pr-head)"
+          echo "BASE_SHA=$base_sha" >> "$GITHUB_ENV"
+
+      - name: Detect issues
+        id: detect
+        env:
+          BASE_SHA: ${{ env.BASE_SHA }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+
+          git diff --unified=0 "$BASE_SHA" pr-head -- README.md README.zh-CN.md \
+            | grep -E '^\+' | grep -v -E '^\+\+\+' | sed 's/^+//' > /tmp/added.txt || true
+          grep -E '^\s*-\s*\[' /tmp/added.txt > /tmp/entries.txt || true
+
+          python3 - <<'PY'
+          import re, json, subprocess
+
+          URL = re.compile(r'\]\((https?://github\.com/[^/)]+/[^/)]+)/?[^)]*\)', re.I)
+
+          added = [l for l in open('/tmp/entries.txt', encoding='utf-8') if l.strip()]
+          slugs = []
+          for line in added:
+              m = URL.search(line)
+              if m:
+                  slug = m.group(1).replace('https://github.com/', '').lower()
+                  slugs.append(slug)
+
+          report = []
+          for slug in sorted(set(slugs)):
+              # 1. dead link check: does it resolve?
+              code = subprocess.run(
+                  ['curl', '-sS', '-o', '/dev/null', '-w', '%{http_code}', '-L',
+                   '--max-time', '25', '-H', 'User-Agent: dsh-list-bot',
+                   f'https://github.com/{slug}'],
+                  capture_output=True, text=True).stdout
+              if code not in ('200', '301', '302'):
+                  report.append(f"- ❌ **Dead link** — `{slug}` returns HTTP {code}.")
+                  continue
+              # 2. renamed check: does the canonical name match?
+              o, _, n = slug.partition('/')
+              proc = subprocess.run(
+                  ['gh', 'api', 'repos', slug, '-q', '.full_name'],
+                  capture_output=True, text=True)
+              if proc.returncode != 0:
+                  report.append(f"- ⚠️ **Unresolvable** — `{slug}` (private/renamed?).")
+              else:
+                  canon = proc.stdout.strip().lower()
+                  if canon != slug:
+                      report.append(
+                          f"- ⚠️ **Renamed** — `{slug}` is now `{canon}`. "
+                          f"Update the URL to the canonical name.")
+
+          with open('/tmp/report.md', 'w') as fh:
+              fh.write('\n'.join(report))
+          print(f'issues detected: {len(report)}')
+          PY
+
+          count="$(grep -c '^\-' /tmp/report.md || true)"
+          count="${count:-0}"
+          delimiter="EOF_$(cat /proc/sys/kernel/random/uuid 2>/dev/null || date +%s)_$$"
+          {
+            echo "report<<${delimiter}"
+            cat /tmp/report.md
+            echo "${delimiter}"
+            echo "count=$count"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Comment findings
+        if: steps.detect.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          REPORT: ${{ steps.detect.outputs.report }}
+        run: |
+          {
+            echo "🐋 **Auto-check found issues**"
+            echo
+            echo "$REPORT"
+            echo
+            echo "Fix the flagged entries and push — the check re-runs automatically."
+          } > /tmp/comment.md
+          gh pr comment "$PR_NUM" --repo "$GITHUB_REPOSITORY" --body-file /tmp/comment.md
