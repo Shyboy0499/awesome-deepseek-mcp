@@ -1,0 +1,96 @@
+{
+  "entries": [
+    {
+      "name": "DMontgomery40/deepseek-mcp-server",
+      "url": "https://github.com/DMontgomery40/deepseek-mcp-server",
+      "description": "Model Context Protocol server for DeepSeek's advanced language models.",
+      "section": "deepseek-api-servers",
+      "stars": 350
+    },
+    {
+      "name": "arizen-dev/deepseek-mcp",
+      "url": "https://github.com/arizen-dev/deepseek-mcp",
+      "description": "A tiny MCP stdio server that exposes DeepSeek as a cheap supervised worker for Claude Code, Codex, or any MCP client.",
+      "section": "deepseek-api-servers",
+      "stars": 53
+    },
+    {
+      "name": "arikusi/deepseek-mcp-server",
+      "url": "https://github.com/arikusi/deepseek-mcp-server",
+      "description": "MCP server for DeepSeek V4 (v4-flash, v4-pro, 1M context): chat, reasoning, function calling, thinking mode, and cost tracking.",
+      "section": "deepseek-api-servers",
+      "stars": 17
+    },
+    {
+      "name": "chew-z/DeepseekMCP",
+      "url": "https://github.com/chew-z/DeepseekMCP",
+      "description": "Simple MCP server in Golang to redirect questions to DeepSeek models.",
+      "section": "deepseek-api-servers",
+      "stars": 4
+    },
+    {
+      "name": "Sheshiyer/deepseek-mcp-with-MoE",
+      "url": "https://github.com/Sheshiyer/deepseek-mcp-with-MoE",
+      "description": "DeepSeek MCP server with Mixture-of-Experts routing.",
+      "section": "deepseek-api-servers",
+      "stars": 5
+    },
+    {
+      "name": "moyu6027/deepseek-MCP-server",
+      "url": "https://github.com/moyu6027/deepseek-MCP-server",
+      "description": "Enhances Claude's reasoning by integrating DeepSeek R1's advanced reasoning engine.",
+      "section": "deepseek-api-servers",
+      "stars": 1
+    },
+    {
+      "name": "xihe-lab/deepseek-mcp-server",
+      "url": "https://github.com/xihe-lab/deepseek-mcp-server",
+      "description": "Automates DeepSeek web chat via Playwright browser automation.",
+      "section": "deepseek-api-servers",
+      "stars": 1
+    },
+    {
+      "name": "deepzhun/deepseek-mcp-server",
+      "url": "https://github.com/deepzhun/deepseek-mcp-server",
+      "description": "Small, clean MCP server for the DeepSeek API: V3 generation, chat, and R1 reasoning with visible chain-of-thought.",
+      "section": "deepseek-api-servers",
+      "stars": 1
+    },
+    {
+      "name": "booleamu/deepseek-mcp-server",
+      "url": "https://github.com/booleamu/deepseek-mcp-server",
+      "description": "DeepSeek API MCP server: Chat, Reasoner, FIM, file analysis; supports official API and free web client mode.",
+      "section": "deepseek-api-servers",
+      "stars": 1
+    },
+    {
+      "name": "shengku2121/deepseek-mcp-server",
+      "url": "https://github.com/shengku2121/deepseek-mcp-server",
+      "description": "DeepSeek API as MCP server — cheaper AI inference for Claude Code, Cursor, Windsurf, and any MCP client.",
+      "section": "deepseek-api-servers",
+      "stars": 0
+    },
+    {
+      "name": "fjgbue/claude-delegator-deepseek-mcp",
+      "url": "https://github.com/fjgbue/claude-delegator-deepseek-mcp",
+      "description": "MCP server that delegates heavy-token tasks from Claude Code to DeepSeek, Kimi, GLM, Qwen, Grok, or any OpenAI-compatible model.",
+      "section": "integrations",
+      "stars": 57
+    },
+    {
+      "name": "OwlCodeTech/reasonix-bridge",
+      "url": "https://github.com/OwlCodeTech/reasonix-bridge",
+      "description": "Codex ↔ DeepSeek MCP bridge: a multi-agent parallel execution engine.",
+      "section": "integrations",
+      "stars": 7
+    },
+    {
+      "name": "Chuyuxuan0v0/deepseek-mcp-image",
+      "url": "https://github.com/Chuyuxuan0v0/deepseek-mcp-image",
+      "description": "Image-recognition MCP server for DeepSeek: lets text-only models \"see\" images (based on SenseNova 6.8 Flash-Lite).",
+      "section": "specialized",
+      "stars": 4
+    }
+  ],
+  "generated": "2026-09-01"
+}

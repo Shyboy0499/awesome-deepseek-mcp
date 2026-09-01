@@ -1,0 +1,87 @@
+name: Weekly health check
+
+# Self-maintenance: re-verifies EVERY entry in the list on a schedule, not just
+# on PRs. Detects dead links and renamed repos, then reports them in an issue so
+# the list stays verified with zero human effort.
+
+on:
+  schedule:
+    # Weekly, Monday 06:37 UTC (offset from :00 to dodge scheduler spikes)
+    - cron: "37 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Shyboy0499/awesome-deepseek-mcp'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check all entries
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import re, subprocess
+
+          URL = re.compile(r'\]\((https://github\.com/([^/)]+/[^/)]+))/?[^)]*\)', re.I)
+          slugs = set()
+          for fn in ('README.md', 'README.zh-CN.md'):
+              for line in open(fn, encoding='utf-8'):
+                  for m in URL.finditer(line):
+                      slugs.add(m.group(2).lower())
+
+          report = []
+          for slug in sorted(slugs):
+              if slug == 'owner/repo':
+                  continue  # format template in CONTRIBUTING
+              code = subprocess.run(
+                  ['curl', '-sS', '-o', '/dev/null', '-w', '%{http_code}', '-L',
+                   '--max-time', '20', '-H', 'User-Agent: dsh-list-bot',
+                   f'https://github.com/{slug}'],
+                  capture_output=True, text=True).stdout
+              if code not in ('200', '301', '302'):
+                  report.append(f"- ❌ **Dead link** — `{slug}` (HTTP {code})")
+                  continue
+              o, _, n = slug.partition('/')
+              proc = subprocess.run(
+                  ['gh', 'api', 'repos', slug, '-q', '.full_name'],
+                  capture_output=True, text=True)
+              if proc.returncode == 0:
+                  canon = proc.stdout.strip().lower()
+                  if canon != slug:
+                      report.append(f"- ⚠️ **Renamed** — `{slug}` → `{canon}`")
+
+          # write result for the next step
+          with open('/tmp/health.md', 'w') as fh:
+              fh.write(f"Found **{len(report)}** issue(s) on `$(date -u +%Y-%m-%d)`.\n\n" if report else "")
+              fh.write('\n'.join(report))
+          print(f'issues: {len(report)}')
+          PY
+
+      - name: Report in issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          count="$(grep -c '^\-' /tmp/health.md || true)"
+          count="${count:-0}"
+          if [ "$count" = "0" ]; then
+            echo "✅ List is healthy — all entries verified."
+            # Close any open health issue if healthy now
+            ISSUE=$(gh issue list --state open --label health-check --json number -q '.[0].number' 2>/dev/null || echo "")
+            if [ -n "$ISSUE" ]; then gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --comment "All entries verified healthy."; fi
+          else
+            # Find existing health-check issue, else create one
+            ISSUE=$(gh issue list --state open --label health-check --json number -q '.[0].number' 2>/dev/null || echo "")
+            BODY="🐋 **Weekly health check** found issues:\n\n$(cat /tmp/health.md)\n\n_Automated — runs every Monday._"
+            if [ -n "$ISSUE" ]; then
+              gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+            else
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "Health check: $(grep -c '^\-' /tmp/health.md || true) stale entries" --body "$BODY" --label health-check
+            fi
+          fi
