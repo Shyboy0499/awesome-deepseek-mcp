@@ -47,7 +47,7 @@ jobs:
           for q in queries:
               proc = subprocess.run(
                   ['gh', 'search', 'repos', q, '--sort', 'stars', '--limit', '30',
-                   '--json', 'fullName,description,stargazersCount,pushedAt,archived'],
+                   '--json', 'fullName,description,stargazersCount,pushedAt,isArchived'],
                   capture_output=True, text=True)
               try:
                   for r in json.loads(proc.stdout):
@@ -60,7 +60,7 @@ jobs:
                           continue
                       if not ('mcp' in (full + ' ' + desc)):
                           continue
-                      if r.get('archived'):
+                      if r.get('isArchived'):
                           continue
                       candidates[full] = {
                           'full': r['fullName'], 'stars': r['stargazersCount'],
