@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'Shyboy0499/awesome-deepseek-mcp'
     outputs:
-      report: ${{ steps.detect.outputs.report }}
       count: ${{ steps.detect.outputs.count }}
     steps:
       - name: Checkout base
@@ -52,7 +51,7 @@ jobs:
           grep -E '^\s*-\s*\[' /tmp/added.txt > /tmp/entries.txt || true
 
           python3 - <<'PY'
-          import re, json, subprocess
+          import re, subprocess
 
           URL = re.compile(r'\]\((https?://github\.com/[^/)]+/[^/)]+)/?[^)]*\)', re.I)
 
@@ -76,7 +75,6 @@ jobs:
                   report.append(f"- ❌ **Dead link** — `{slug}` returns HTTP {code}.")
                   continue
               # 2. renamed check: does the canonical name match?
-              o, _, n = slug.partition('/')
               proc = subprocess.run(
                   ['gh', 'api', 'repos', slug, '-q', '.full_name'],
                   capture_output=True, text=True)
@@ -96,25 +94,18 @@ jobs:
 
           count="$(grep -c '^\-' /tmp/report.md || true)"
           count="${count:-0}"
-          delimiter="EOF_$(cat /proc/sys/kernel/random/uuid 2>/dev/null || date +%s)_$$"
-          {
-            echo "report<<${delimiter}"
-            cat /tmp/report.md
-            echo "${delimiter}"
-            echo "count=$count"
-          } >> "$GITHUB_OUTPUT"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
 
       - name: Comment findings
         if: steps.detect.outputs.count != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUM: ${{ github.event.pull_request.number }}
-          REPORT: ${{ steps.detect.outputs.report }}
         run: |
           {
             echo "🐋 **Auto-check found issues**"
             echo
-            echo "$REPORT"
+            cat /tmp/report.md
             echo
             echo "Fix the flagged entries and push — the check re-runs automatically."
           } > /tmp/comment.md
