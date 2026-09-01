@@ -1,8 +1,16 @@
-<h1 align="center">Awesome DeepSeek MCP</h1>
+<h1 align="center">
+  <img src="https://avatars.githubusercontent.com/deepseek-ai" width="64" alt="DeepSeek" /><br />
+  Awesome DeepSeek MCP
+</h1>
 
 <p align="center">
   <strong>A curated list of MCP servers and tools for DeepSeek</strong><br />
   Hand-picked · Bilingual (English / 中文) · Auto-maintained
+</p>
+
+<p align="center">
+  <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
+  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/中文-简体中文-3b82f6" alt="简体中文"></a>
 </p>
 
 <p align="center">
