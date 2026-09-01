@@ -1,0 +1,101 @@
+name: Daily discovery
+
+# Self-growing: searches GitHub daily for new DeepSeek MCP servers that aren't
+# listed yet, and reports them in an issue for review. The list finds new
+# entries itself instead of waiting for someone to submit them.
+
+on:
+  schedule:
+    # Daily 06:12 UTC (offset from :00 to dodge scheduler spikes)
+    - cron: "12 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Shyboy0499/awesome-deepseek-mcp'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Search for new DeepSeek MCP servers
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, re, subprocess
+
+          # existing entries
+          existing = set()
+          try:
+              data = json.load(open('data.json'))
+              existing = {e['name'].lower() for e in data['entries']}
+          except Exception:
+              pass
+
+          # search queries
+          queries = [
+              'deepseek mcp',
+              'deepseek-mcp',
+              'topic:mcp deepseek',
+              'mcp server deepseek in:name,description',
+          ]
+          candidates = {}
+          for q in queries:
+              proc = subprocess.run(
+                  ['gh', 'search', 'repos', q, '--sort', 'stars', '--limit', '30',
+                   '--json', 'fullName,description,stargazersCount,pushedAt,archived'],
+                  capture_output=True, text=True)
+              try:
+                  for r in json.loads(proc.stdout):
+                      full = r['fullName'].lower()
+                      if full in existing or full in candidates:
+                          continue
+                      desc = (r.get('description') or '').lower()
+                      # must be both DeepSeek and MCP relevant
+                      if 'deepseek' not in (full + ' ' + desc):
+                          continue
+                      if not ('mcp' in (full + ' ' + desc)):
+                          continue
+                      if r.get('archived'):
+                          continue
+                      candidates[full] = {
+                          'full': r['fullName'], 'stars': r['stargazersCount'],
+                          'desc': (r.get('description') or '')[:80],
+                          'pushed': (r.get('pushedAt') or '')[:10],
+                      }
+              except Exception as e:
+                  print(f'search error for {q}: {e}')
+
+          ranked = sorted(candidates.values(), key=lambda c: -c['stars'])
+          lines = []
+          for c in ranked[:10]:
+              lines.append(f"- [{c['full']}](https://github.com/{c['full']}) ★{c['stars']} (pushed {c['pushed']}) — {c['desc']}")
+
+          body = (f"**{len(ranked)}** new DeepSeek MCP candidates found on `$(date -u +%Y-%m-%d)`.\n\n"
+                  "Review and add the good ones to the list (both READMEs + data.json).\n\n"
+                  + ('\n'.join(lines) if lines else '_None — the list is up to date._'))
+          open('/tmp/candidates.md', 'w').write(body)
+          print(f'candidates: {len(ranked)}')
+          PY
+
+      - name: Report candidates
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BODY="$(cat /tmp/candidates.md)"
+          ISSUE=$(gh issue list --state open --label discovery --json number -q '.[0].number' 2>/dev/null || echo "")
+          if grep -q "up to date" /tmp/candidates.md; then
+            # no new candidates; close any open discovery issue
+            if [ -n "$ISSUE" ]; then gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --comment "List is up to date."; fi
+          else
+            if [ -n "$ISSUE" ]; then
+              gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+            else
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "New DeepSeek MCP candidates to review" --body "$BODY" --label discovery
+            fi
+          fi
