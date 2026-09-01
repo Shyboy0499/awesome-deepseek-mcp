@@ -32,6 +32,8 @@ _MCP servers that expose DeepSeek's language models to Claude Code, Cursor, Code
 - [chew-z/DeepseekMCP](https://github.com/chew-z/DeepseekMCP) — Simple MCP server in Golang to redirect questions to DeepSeek models.  `⭐4`
 - [Sheshiyer/deepseek-mcp-with-MoE](https://github.com/Sheshiyer/deepseek-mcp-with-MoE) — DeepSeek MCP server with Mixture-of-Experts routing.  `⭐5`
 
+- [definitely-not-real/dead-deepseek-mcp](https://github.com/definitely-not-real/dead-deepseek-mcp) — This repo does not exist (workflow test).
+
 ## DeepSeek-powered integrations
 
 _MCP bridges and delegators that route work to DeepSeek from other agents._
