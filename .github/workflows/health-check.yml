@@ -73,15 +73,15 @@ jobs:
           if [ "$count" = "0" ]; then
             echo "✅ List is healthy — all entries verified."
             # Close any open health issue if healthy now
-            ISSUE=$(gh issue list --state open --label health-check --json number -q '.[0].number' 2>/dev/null || echo "")
+            ISSUE=$(gh issue list --state open --search "Health check" --json number -q '.[0].number' 2>/dev/null || echo "")
             if [ -n "$ISSUE" ]; then gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --comment "All entries verified healthy."; fi
           else
             # Find existing health-check issue, else create one
-            ISSUE=$(gh issue list --state open --label health-check --json number -q '.[0].number' 2>/dev/null || echo "")
+            ISSUE=$(gh issue list --state open --search "Health check" --json number -q '.[0].number' 2>/dev/null || echo "")
             BODY="🐋 **Weekly health check** found issues:\n\n$(cat /tmp/health.md)\n\n_Automated — runs every Monday._"
             if [ -n "$ISSUE" ]; then
               gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "$BODY"
             else
-              gh issue create --repo "$GITHUB_REPOSITORY" --title "Health check: $(grep -c '^\-' /tmp/health.md || true) stale entries" --body "$BODY" --label health-check
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "Health check: $(grep -c '^\-' /tmp/health.md || true) stale entries" --body "$BODY"
             fi
           fi

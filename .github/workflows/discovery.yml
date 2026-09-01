@@ -88,7 +88,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BODY="$(cat /tmp/candidates.md)"
-          ISSUE=$(gh issue list --state open --label discovery --json number -q '.[0].number' 2>/dev/null || echo "")
+          ISSUE=$(gh issue list --state open --search "New DeepSeek MCP candidates" --json number -q '.[0].number' 2>/dev/null || echo "")
           if grep -q "up to date" /tmp/candidates.md; then
             # no new candidates; close any open discovery issue
             if [ -n "$ISSUE" ]; then gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --comment "List is up to date."; fi
@@ -96,6 +96,6 @@ jobs:
             if [ -n "$ISSUE" ]; then
               gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "$BODY"
             else
-              gh issue create --repo "$GITHUB_REPOSITORY" --title "New DeepSeek MCP candidates to review" --body "$BODY" --label discovery
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "New DeepSeek MCP candidates to review" --body "$BODY"
             fi
           fi
