@@ -25,7 +25,9 @@
 
 - [DeepSeek-API MCP 服务器](#deepseek-api-mcp-服务器) — 向任意 MCP 客户端暴露 DeepSeek 模型
 - [DeepSeek 驱动的集成](#deepseek-驱动的集成) — 桥接、委派与多智能体方案
-- [专用工具](#专用工具) — 视觉、媒体与特定场景的 DeepSeek MCP 服务器
+- [专用工具](#专用工具)
+- [使用 MCP 的 DeepSeek 客户端](#使用-mcp-的-deepseek-客户端) — 使用 MCP 工具的 DeepSeek 优先客户端与 agent
+ — 视觉、媒体与特定场景的 DeepSeek MCP 服务器
 - [贡献指南](#贡献指南)
 
 ---
@@ -58,6 +60,14 @@ _把任务路由给 DeepSeek 的 MCP 桥接与委派工具。_
 _面向特定能力的 DeepSeek MCP 服务器。_
 
 - [Chuyuxuan0v0/deepseek-mcp-image](https://github.com/Chuyuxuan0v0/deepseek-mcp-image) —— 面向 DeepSeek 的识图 MCP 服务器：让不支持图片输入的 LLM 也能看图（基于商汤 SenseNova 6.8 Flash-Lite）。  `⭐4`
+
+
+## 使用 MCP 的 DeepSeek 客户端
+
+_使用 MCP 工具的 DeepSeek 优先客户端与 agent。_
+
+- [zhu1090093659/deepseek-pp](https://github.com/zhu1090093659/deepseek-pp) —— DeepSeek Web 浏览器扩展：带 MCP 工具、记忆、Skills、自动化、网页搜索与对话导出的 AI agent 工作区。  `⭐1756`
+- [tigicion/dao-code](https://github.com/tigicion/dao-code) —— 面向 DeepSeek-V4 的开源 TypeScript 终端编码 agent，内置 Skills/MCP/Hooks，兼容 Claude Code 配置。  `⭐1255`
 
 ## 贡献指南
 

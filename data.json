@@ -90,6 +90,20 @@
       "description": "Image-recognition MCP server for DeepSeek: lets text-only models \"see\" images (based on SenseNova 6.8 Flash-Lite).",
       "section": "specialized",
       "stars": 4
+    },
+    {
+      "name": "zhu1090093659/deepseek-pp",
+      "url": "https://github.com/zhu1090093659/deepseek-pp",
+      "description": "DeepSeek Web browser extension: AI agent workspace with MCP tools, memory, Skills, automation, web search, and conversation export.",
+      "section": "deepseek-clients",
+      "stars": 1756
+    },
+    {
+      "name": "tigicion/dao-code",
+      "url": "https://github.com/tigicion/dao-code",
+      "description": "Open-source TypeScript terminal coding agent for DeepSeek-V4, with Skills/MCP/Hooks and Claude Code config compatibility.",
+      "section": "deepseek-clients",
+      "stars": 1255
     }
   ],
   "generated": "2026-09-01"

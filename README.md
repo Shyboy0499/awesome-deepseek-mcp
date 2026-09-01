@@ -25,7 +25,9 @@ A curated collection of **Model Context Protocol (MCP)** servers and tools where
 
 - [DeepSeek-API MCP servers](#deepseek-api-mcp-servers) — expose DeepSeek models to any MCP client
 - [DeepSeek-powered integrations](#deepseek-powered-integrations) — bridges, delegators, and multi-agent setups
-- [Specialized tools](#specialized-tools) — vision, media, and niche DeepSeek MCP servers
+- [Specialized tools](#specialized-tools)
+- [MCP-powered DeepSeek clients](#mcp-powered-deepseek-clients) — DeepSeek-first clients and agents that use MCP tools
+ — vision, media, and niche DeepSeek MCP servers
 - [Contributing](#contributing)
 
 ---
@@ -58,6 +60,14 @@ _MCP bridges and delegators that route work to DeepSeek from other agents._
 _Niche DeepSeek MCP servers for specific capabilities._
 
 - [Chuyuxuan0v0/deepseek-mcp-image](https://github.com/Chuyuxuan0v0/deepseek-mcp-image) — Image-recognition MCP server for DeepSeek: lets text-only models "see" images (based on SenseNova 6.8 Flash-Lite).  `⭐4`
+
+
+## MCP-powered DeepSeek clients
+
+_DeepSeek-first clients and agents that use MCP tools._
+
+- [zhu1090093659/deepseek-pp](https://github.com/zhu1090093659/deepseek-pp) — DeepSeek Web browser extension: an AI agent workspace with MCP tools, memory, Skills, automation, web search, and conversation export.  `⭐1756`
+- [tigicion/dao-code](https://github.com/tigicion/dao-code) — Open-source TypeScript terminal coding agent for DeepSeek-V4, with Skills/MCP/Hooks and Claude Code config compatibility.  `⭐1255`
 
 ## Contributing
 
