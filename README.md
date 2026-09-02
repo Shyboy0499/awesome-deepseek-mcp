@@ -69,6 +69,7 @@ _DeepSeek-first clients and agents that use MCP tools._
 - [zhu1090093659/deepseek-pp](https://github.com/zhu1090093659/deepseek-pp) — DeepSeek Web browser extension: an AI agent workspace with MCP tools, memory, Skills, automation, web search, and conversation export.  `⭐1756`
 - [tigicion/dao-code](https://github.com/tigicion/dao-code) — Open-source TypeScript terminal coding agent for DeepSeek-V4, with Skills/MCP/Hooks and Claude Code config compatibility.  `⭐1255`
 
+- [usewhale/Whale](https://github.com/usewhale/Whale) — Terminal-first AI coding agent for DeepSeek: ~98% prompt-cache hit rate, 1M context, MCP tools, dynamic workflows.  `⭐925`
 ## Contributing
 
 Want to add a DeepSeek MCP server? Open a PR with the entry in this format:

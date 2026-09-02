@@ -69,6 +69,7 @@ _使用 MCP 工具的 DeepSeek 优先客户端与 agent。_
 - [zhu1090093659/deepseek-pp](https://github.com/zhu1090093659/deepseek-pp) —— DeepSeek Web 浏览器扩展：带 MCP 工具、记忆、Skills、自动化、网页搜索与对话导出的 AI agent 工作区。  `⭐1756`
 - [tigicion/dao-code](https://github.com/tigicion/dao-code) —— 面向 DeepSeek-V4 的开源 TypeScript 终端编码 agent，内置 Skills/MCP/Hooks，兼容 Claude Code 配置。  `⭐1255`
 
+- [usewhale/Whale](https://github.com/usewhale/Whale) —— 面向 DeepSeek 的终端优先 AI 编码 agent：约 98% prompt 缓存命中率、1M 上下文、MCP 工具与动态工作流。  `⭐925`
 ## 贡献指南
 
 想添加一个 DeepSeek MCP 服务器？提交 PR，条目格式如下：
