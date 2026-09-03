@@ -66,11 +66,17 @@ jobs:
                           'full': r['fullName'], 'stars': r['stargazersCount'],
                           'desc': (r.get('description') or '')[:80],
                           'pushed': (r.get('pushedAt') or '')[:10],
+                          # DeepSeek in the repo NAME is the strongest signal of a
+                          # genuinely DeepSeek-focused project (vs a multi-provider
+                          # gateway that merely lists DeepSeek among 300 others).
+                          'deepseek_named': 'deepseek' in r['fullName'].lower(),
                       }
               except Exception as e:
                   print(f'search error for {q}: {e}')
 
-          ranked = sorted(candidates.values(), key=lambda c: -c['stars'])
+          # Rank DeepSeek-named repos first (they are the curated focus), then by stars.
+          ranked = sorted(candidates.values(),
+                          key=lambda c: (not c['deepseek_named'], -c['stars']))
           lines = []
           for c in ranked[:10]:
               lines.append(f"- [{c['full']}](https://github.com/{c['full']}) ★{c['stars']} (pushed {c['pushed']}) — {c['desc']}")
