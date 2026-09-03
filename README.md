@@ -48,6 +48,12 @@ _MCP servers that expose DeepSeek's language models to Claude Code, Cursor, Code
 - [booleamu/deepseek-mcp-server](https://github.com/booleamu/deepseek-mcp-server) — DeepSeek API MCP server: Chat, Reasoner, FIM, file analysis; supports official API and free web client mode.  `⭐1`
 - [shengku2121/deepseek-mcp-server](https://github.com/shengku2121/deepseek-mcp-server) — DeepSeek API as MCP server — cheaper AI inference for Claude Code, Cursor, Windsurf, and any MCP client.  `⭐0`
 
+- [newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP](https://github.com/newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP) — MCP server implementing RAT (Retrieval Augmented Thinking), combining DeepSeek reasoning with Claude.  `⭐116`
+- [kamelirzouni/MCP-server-Deepseek_R1](https://github.com/kamelirzouni/MCP-server-Deepseek_R1) — MCP server connecting Claude Desktop with DeepSeek R1.  `⭐69`
+- [ruixingshi/deepseek-thinker-mcp](https://github.com/ruixingshi/deepseek-thinker-mcp) — MCP provider exposing DeepSeek reasoning content to MCP-enabled AI clients.  `⭐69`
+- [HarshJ23/deepseek-claude-MCP-server](https://github.com/HarshJ23/deepseek-claude-MCP-server) — MCP server integrating DeepSeek R1 reasoning capabilities into Claude.  `⭐52`
+- [lyumeng/websearch-deepseek](https://github.com/lyumeng/websearch-deepseek) — MCP server providing web search powered by the DeepSeek API.  `⭐28`
+
 ## DeepSeek-powered integrations
 
 _MCP bridges and delegators that route work to DeepSeek from other agents._
@@ -62,6 +68,7 @@ _Niche DeepSeek MCP servers for specific capabilities._
 - [Chuyuxuan0v0/deepseek-mcp-image](https://github.com/Chuyuxuan0v0/deepseek-mcp-image) — Image-recognition MCP server for DeepSeek: lets text-only models "see" images (based on SenseNova 6.8 Flash-Lite).  `⭐4`
 
 
+- [Shaohan-He/deepseek-eyes](https://github.com/Shaohan-He/deepseek-eyes) — Vision MCP server for DeepSeek: clipboard image to text description (via Qwen-VL).  `⭐63`
 ## MCP-powered DeepSeek clients
 
 _DeepSeek-first clients and agents that use MCP tools._

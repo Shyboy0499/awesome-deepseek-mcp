@@ -111,6 +111,48 @@
       "description": "Terminal-first AI coding agent for DeepSeek: ~98% prompt-cache hit rate, 1M context, MCP tools, dynamic workflows.",
       "section": "deepseek-clients",
       "stars": 925
+    },
+    {
+      "name": "newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP",
+      "url": "https://github.com/newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP",
+      "description": "MCP server implementing RAT (Retrieval Augmented Thinking), combining DeepSeek reasoning with Claude.",
+      "section": "deepseek-api-servers",
+      "stars": 116
+    },
+    {
+      "name": "kamelirzouni/MCP-server-Deepseek_R1",
+      "url": "https://github.com/kamelirzouni/MCP-server-Deepseek_R1",
+      "description": "MCP server connecting Claude Desktop with DeepSeek R1.",
+      "section": "deepseek-api-servers",
+      "stars": 69
+    },
+    {
+      "name": "ruixingshi/deepseek-thinker-mcp",
+      "url": "https://github.com/ruixingshi/deepseek-thinker-mcp",
+      "description": "MCP provider exposing DeepSeek reasoning content to MCP-enabled AI clients.",
+      "section": "deepseek-api-servers",
+      "stars": 69
+    },
+    {
+      "name": "HarshJ23/deepseek-claude-MCP-server",
+      "url": "https://github.com/HarshJ23/deepseek-claude-MCP-server",
+      "description": "MCP server integrating DeepSeek R1 reasoning capabilities into Claude.",
+      "section": "deepseek-api-servers",
+      "stars": 52
+    },
+    {
+      "name": "lyumeng/websearch-deepseek",
+      "url": "https://github.com/lyumeng/websearch-deepseek",
+      "description": "MCP server providing web search powered by the DeepSeek API.",
+      "section": "deepseek-api-servers",
+      "stars": 28
+    },
+    {
+      "name": "Shaohan-He/deepseek-eyes",
+      "url": "https://github.com/Shaohan-He/deepseek-eyes",
+      "description": "Vision MCP server for DeepSeek: clipboard image to text description (via Qwen-VL).",
+      "section": "specialized",
+      "stars": 63
     }
   ],
   "generated": "2026-09-01"

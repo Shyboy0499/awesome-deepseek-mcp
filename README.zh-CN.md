@@ -48,6 +48,12 @@ _向 Claude Code、Cursor、Codex、DSH 或任意 MCP 客户端暴露 DeepSeek �
 - [booleamu/deepseek-mcp-server](https://github.com/booleamu/deepseek-mcp-server) —— DeepSeek API MCP 服务器：聊天、Reasoner、FIM、文件分析；支持官方 API 与免费网页客户端模式。  `⭐1`
 - [shengku2121/deepseek-mcp-server](https://github.com/shengku2121/deepseek-mcp-server) —— 将 DeepSeek API 作为 MCP 服务器——为 Claude Code、Cursor、Windsurf 及任意 MCP 客户端提供更廉价的 AI 推理。  `⭐0`
 
+- [newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP](https://github.com/newideas99/Deepseek-Thinking-Claude-3.5-Sonnet-CLINE-MCP) —— 实现 RAT（检索增强思考）的 MCP 服务器，结合 DeepSeek 推理与 Claude。  `⭐116`
+- [kamelirzouni/MCP-server-Deepseek_R1](https://github.com/kamelirzouni/MCP-server-Deepseek_R1) —— 将 Claude Desktop 与 DeepSeek R1 连接的 MCP 服务器。  `⭐69`
+- [ruixingshi/deepseek-thinker-mcp](https://github.com/ruixingshi/deepseek-thinker-mcp) —— 向支持 MCP 的 AI 客户端暴露 DeepSeek 推理内容的 MCP 提供方。  `⭐69`
+- [HarshJ23/deepseek-claude-MCP-server](https://github.com/HarshJ23/deepseek-claude-MCP-server) —— 将 DeepSeek R1 推理能力集成到 Claude 的 MCP 服务器。  `⭐52`
+- [lyumeng/websearch-deepseek](https://github.com/lyumeng/websearch-deepseek) —— 由 DeepSeek API 驱动的网页搜索 MCP 服务器。  `⭐28`
+
 ## DeepSeek 驱动的集成
 
 _把任务路由给 DeepSeek 的 MCP 桥接与委派工具。_
@@ -62,6 +68,7 @@ _面向特定能力的 DeepSeek MCP 服务器。_
 - [Chuyuxuan0v0/deepseek-mcp-image](https://github.com/Chuyuxuan0v0/deepseek-mcp-image) —— 面向 DeepSeek 的识图 MCP 服务器：让不支持图片输入的 LLM 也能看图（基于商汤 SenseNova 6.8 Flash-Lite）。  `⭐4`
 
 
+- [Shaohan-He/deepseek-eyes](https://github.com/Shaohan-He/deepseek-eyes) —— 给 DeepSeek 装上眼睛的 MCP 服务器：剪贴板图片转文字描述（基于通义千问 VL）。  `⭐63`
 ## 使用 MCP 的 DeepSeek 客户端
 
 _使用 MCP 工具的 DeepSeek 优先客户端与 agent。_
