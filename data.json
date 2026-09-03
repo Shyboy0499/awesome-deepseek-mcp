@@ -153,6 +153,20 @@
       "description": "Vision MCP server for DeepSeek: clipboard image to text description (via Qwen-VL).",
       "section": "specialized",
       "stars": 63
+    },
+    {
+      "name": "dassader/deepseek-mcp",
+      "url": "https://github.com/dassader/deepseek-mcp",
+      "description": "DeepSeek V4 MCP server with browser UI.",
+      "section": "deepseek-api-servers",
+      "stars": 1
+    },
+    {
+      "name": "aurelienbran/Deepseek-MCP",
+      "url": "https://github.com/aurelienbran/Deepseek-MCP",
+      "description": "DeepSeek R1 32B integration with MCP for GitHub automation.",
+      "section": "deepseek-api-servers",
+      "stars": 1
     }
   ],
   "generated": "2026-09-01"

@@ -54,6 +54,8 @@ _向 Claude Code、Cursor、Codex、DSH 或任意 MCP 客户端暴露 DeepSeek �
 - [HarshJ23/deepseek-claude-MCP-server](https://github.com/HarshJ23/deepseek-claude-MCP-server) —— 将 DeepSeek R1 推理能力集成到 Claude 的 MCP 服务器。  `⭐52`
 - [lyumeng/websearch-deepseek](https://github.com/lyumeng/websearch-deepseek) —— 由 DeepSeek API 驱动的网页搜索 MCP 服务器。  `⭐28`
 
+- [dassader/deepseek-mcp](https://github.com/dassader/deepseek-mcp) —— 带浏览器 UI 的 DeepSeek V4 MCP 服务器。  `⭐1`
+- [aurelienbran/Deepseek-MCP](https://github.com/aurelienbran/Deepseek-MCP) —— 面向 GitHub 自动化的 DeepSeek R1 32B + MCP 集成。  `⭐1`
 ## DeepSeek 驱动的集成
 
 _把任务路由给 DeepSeek 的 MCP 桥接与委派工具。_

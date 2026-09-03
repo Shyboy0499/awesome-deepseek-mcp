@@ -54,6 +54,8 @@ _MCP servers that expose DeepSeek's language models to Claude Code, Cursor, Code
 - [HarshJ23/deepseek-claude-MCP-server](https://github.com/HarshJ23/deepseek-claude-MCP-server) — MCP server integrating DeepSeek R1 reasoning capabilities into Claude.  `⭐52`
 - [lyumeng/websearch-deepseek](https://github.com/lyumeng/websearch-deepseek) — MCP server providing web search powered by the DeepSeek API.  `⭐28`
 
+- [dassader/deepseek-mcp](https://github.com/dassader/deepseek-mcp) — DeepSeek V4 MCP server with browser UI.  `⭐1`
+- [aurelienbran/Deepseek-MCP](https://github.com/aurelienbran/Deepseek-MCP) — DeepSeek R1 32B integration with MCP for GitHub automation.  `⭐1`
 ## DeepSeek-powered integrations
 
 _MCP bridges and delegators that route work to DeepSeek from other agents._
