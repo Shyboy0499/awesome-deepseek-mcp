@@ -62,6 +62,13 @@ jobs:
                           continue
                       if r.get('isArchived'):
                           continue
+                      # Skip no-description repos and obvious learning demos so the
+                      # report stays high-signal (curated quality bar).
+                      raw_desc = r.get('description') or ''
+                      if len(raw_desc.strip()) < 15:
+                          continue
+                      if any(kw in desc for kw in ('demo', 'example', '学习用', '示例', '教程', 'sandbox')):
+                          continue
                       candidates[full] = {
                           'full': r['fullName'], 'stars': r['stargazersCount'],
                           'desc': (r.get('description') or '')[:80],
